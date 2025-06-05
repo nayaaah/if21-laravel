@@ -281,33 +281,10 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/dashboard') }}" class="nav-link">
                   <i class="nav-icon bi bi-speedometer"></i>
-                  <p>
-                    Dashboard
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
+                  <p>Dashboard</p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a class='nav-link' href='/dist/pages/'>
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v1</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='nav-link' href='/dist/pages/index2'>
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v2</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='nav-link' href='/dist/pages/index3'>
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v3</p>
-                    </a>
-                  </li>
-                </ul>
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ route('fakultas.index') }}'>
@@ -424,6 +401,44 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
+    {{-- jquery cdn --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    {{-- swal --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var nama = $(this).data("nama");
+            event.preventDefault();
+            
+            // swal({
+            Swal.fire({
+                    title: `Apakah Anda yakin ingin menghapus data ${nama} ini?`,
+                    text: "If you delete this, it will be gone forever.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
+
+    @session('success')
+    <script>
+      Swal.fire({
+        title: "Good job!",
+        text: " {{ session('success') }} ",
+        icon: "success"
+      });
+      </script>
+    @endsession
     <!--end::Script-->
   </body>
   <!--end::Body-->
