@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Mata Kuliah')
+@section('title', 'Matakuliah')
 @section('content')
     <!--begin::Row-->
     <div class="row">
@@ -30,25 +30,21 @@
             </div>
             </div>
             <div class="card-body">
-                <a href="{{ route('mata_kuliah.create') }}" class="btn btn-primary">Tambah</a>
+                <a href="{{ route('matakuliah.create') }}" class="btn btn-primary">Tambah</a>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Kode Matkul</th>
-                            <th>Nama</th>
-                            <th>Prodi_id</th>
-                            <th>Wakil Dekan</th>
+                            <th>Nama Matkul</th>
+                            <th>Program Studi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($matakuliah as $item)
                         <tr>
-                            <td><img stc=" {{asset('storage/images/"}} width</td>}} width="80p"
+                            <td>{{ $item->kode_mk }}</td>
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->singkatan }}</td>
-                            <td>{{ $item->nama_dekan }}</td>
-                            <td>{{ $item->nama_wadek }}</td>
+                            <td>{{ $item->prodi->nama }}</td>
                         </tr>
                         @endforeach
                     </tbody>
